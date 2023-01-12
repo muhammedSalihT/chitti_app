@@ -168,6 +168,11 @@ class TakeChittiiScreen extends StatelessWidget {
                       ),
                     ),
                     Box.stdBox,
+                    const CustomTextWidget(
+                      text: "Total ammount ",
+                      textColor: Colors.grey,
+                    ),
+                    Box.stdBox,
                     Consumer<TakeChitProvider>(
                         builder: (context, takeChitProvider, _) {
                       return Container(
