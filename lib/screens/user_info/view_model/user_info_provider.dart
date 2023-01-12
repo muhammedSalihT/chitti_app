@@ -1,4 +1,3 @@
-import 'package:chit_app/screens/global/view_model/global_provider.dart';
 import 'package:chit_app/screens/login/view/login_screen.dart';
 import 'package:chit_app/screens/login/view_model/login_provider.dart';
 import 'package:chit_app/utils/routes.dart';
@@ -13,8 +12,6 @@ class UserInfoProvider extends ChangeNotifier {
     final loginDb = await Hive.openBox("login_box");
     loginDb.deleteAll(loginDb.keys);
     final loginProvider = Provider.of<LoginProvider>(context, listen: false);
-    final globalProvider = Provider.of<GlobalProvider>(context, listen: false);
-    globalProvider.currentBarIndex = 0;
     loginProvider.userChittiList.clear();
     RoutesManager.removeAllScreen(screen: const LoginScreen());
     notifyListeners();
