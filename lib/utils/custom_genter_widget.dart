@@ -3,8 +3,8 @@ import 'package:chit_app/utils/custom_text_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-class GenderWidget extends StatelessWidget {
-  const GenderWidget({
+class CustomGenderWidget extends StatelessWidget {
+  const CustomGenderWidget({
     Key? key,
     required this.text,
     required this.genterType,
