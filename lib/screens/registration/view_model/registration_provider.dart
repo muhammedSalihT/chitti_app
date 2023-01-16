@@ -16,7 +16,6 @@ class RegisterProvider extends ChangeNotifier {
   static var regKey = GlobalKey<FormState>();
 
   bool hidePassword = true;
-  bool hideRePassword = true;
 
   void registerHere(context) async {
     if (validated()) {

@@ -1,6 +1,8 @@
 import 'package:chit_app/constends/const_box.dart';
 import 'package:chit_app/screens/all_chitti/view_model/all_chitti_provider.dart';
 import 'package:chit_app/screens/take_chitti/view/take_chitti_screen.dart';
+import 'package:chit_app/screens/take_chitti/view_model/take_chit_provider.dart';
+import 'package:chit_app/utils/custom_date_widget.dart';
 import 'package:chit_app/utils/custom_detail_widget.dart';
 import 'package:chit_app/utils/custom_text_widget.dart';
 import 'package:chit_app/utils/routes.dart';
@@ -14,6 +16,7 @@ class AllChittiScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final allChittiProvider = context.read<AllChittiProvider>();
+    final takeChittiController = context.read<TakeChitProvider>();
     return Scaffold(
         body: SafeArea(
             child: AnimationConfiguration.staggeredGrid(
@@ -29,6 +32,7 @@ class AllChittiScreen extends StatelessWidget {
               padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
               child: GestureDetector(
                 onTap: () {
+                  takeChittiController.getUserdata();
                   RoutesManager.nextScreen(
                       screen: TakeChittiiScreen(
                     allChitti: allChittList[index],
@@ -48,7 +52,6 @@ class AllChittiScreen extends StatelessWidget {
                           text: allChittList[index].chitName,
                           textSize: 40,
                         ),
-                        Box.sizedBox1,
                         CustomDeatilsWidget(
                             contentText: "NUMBER OF PEOPLE",
                             detailText:
@@ -71,50 +74,11 @@ class AllChittiScreen extends StatelessWidget {
                         Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
-                            Column(
-                              children: [
-                                const CustomTextWidget(
-                                  text: "Start Date",
-                                  textWeight: FontWeight.w400,
-                                ),
-                                Box.stdBox,
-                                Container(
-                                  decoration: BoxDecoration(
-                                    borderRadius: BorderRadius.circular(5),
-                                    color: Colors.white,
-                                  ),
-                                  child: const Padding(
-                                    padding: EdgeInsets.all(8.0),
-                                    child: CustomTextWidget(
-                                      text: "10/1/2023",
-                                      textWeight: FontWeight.w800,
-                                    ),
-                                  ),
-                                )
-                              ],
-                            ),
-                            Column(
-                              children: [
-                                const CustomTextWidget(
-                                  text: "End Date",
-                                  textWeight: FontWeight.w400,
-                                ),
-                                Box.stdBox,
-                                Container(
-                                  decoration: BoxDecoration(
-                                    borderRadius: BorderRadius.circular(5),
-                                    color: Colors.white,
-                                  ),
-                                  child: const Padding(
-                                    padding: EdgeInsets.all(8.0),
-                                    child: CustomTextWidget(
-                                      text: "10/10/2023",
-                                      textWeight: FontWeight.w800,
-                                    ),
-                                  ),
-                                )
-                              ],
-                            ),
+                            CustomDateWidget(
+                                text: "Start Date",
+                                date: allChittiProvider
+                                    .allChitiList[index].startDate),
+                            const CustomDateWidget(),
                           ],
                         ),
                       ],

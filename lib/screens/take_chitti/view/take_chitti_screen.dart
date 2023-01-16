@@ -1,11 +1,10 @@
 import 'package:chit_app/constends/const_box.dart';
 import 'package:chit_app/screens/all_chitti/model/all_chitti_model.dart';
 import 'package:chit_app/screens/take_chitti/view_model/take_chit_provider.dart';
+import 'package:chit_app/utils/custom_dropdown_button.dart';
 import 'package:chit_app/utils/custom_text_widget.dart';
-import 'package:dropdown_button2/custom_dropdown_button2.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-
 import '../../../constends/const_colors.dart';
 
 class TakeChittiiScreen extends StatelessWidget {
@@ -196,14 +195,15 @@ class TakeChittiiScreen extends StatelessWidget {
                         },
                         style: ElevatedButton.styleFrom(
                           elevation: 0.0,
-                          primary: Colors.red.withOpacity(0),
+                          primary: AppColors.blackColor,
                           shape: const RoundedRectangleBorder(
                               borderRadius: BorderRadius.all(
                                 Radius.circular(15),
                               ),
                               side: BorderSide(color: Colors.black)),
                         ),
-                        child: const CustomTextWidget(
+                        child: CustomTextWidget(
+                          textColor: allChitti.boxColor,
                           text: "Conform Chit",
                           textSize: 20,
                         ),
@@ -217,35 +217,5 @@ class TakeChittiiScreen extends StatelessWidget {
         ),
       ),
     );
-  }
-}
-
-class CustomDropDownButton extends StatelessWidget {
-  const CustomDropDownButton({
-    Key? key,
-  }) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return Consumer<TakeChitProvider>(builder: (context, valu, _) {
-      return CustomDropdownButton2(
-        buttonDecoration: BoxDecoration(
-            border: Border.all(color: Colors.black),
-            borderRadius: BorderRadius.circular(15)),
-        buttonWidth: 100,
-        dropdownWidth: 50,
-        buttonHeight: 50,
-        value: valu.itemNumber,
-        hint: 'Select Item',
-        dropdownItems: const [
-          "1",
-          "2",
-          "3",
-        ],
-        onChanged: (value) {
-          valu.getItem(value!);
-        },
-      );
-    });
   }
 }

@@ -3,6 +3,7 @@ import 'package:chit_app/constends/const_colors.dart';
 import 'package:chit_app/constends/text_const.dart';
 import 'package:chit_app/screens/login/view_model/login_provider.dart';
 import 'package:chit_app/screens/registration/view/register_screen.dart';
+import 'package:chit_app/utils/custom_text_widget.dart';
 import 'package:chit_app/utils/custom_textform_widget.dart';
 import 'package:chit_app/utils/routes.dart';
 import 'package:flutter/material.dart';
@@ -25,7 +26,7 @@ class LoginScreen extends StatelessWidget {
               icon: Icons.email,
               textType: TextInputType.emailAddress,
               controller: provider.email,
-              errorMessege: "Please Enter Your Email"),
+              errorMessege: ConstText.errorMail),
           Box.sizedBox2,
           TextFormWidget(
               label: ConstText.pass,
@@ -33,28 +34,29 @@ class LoginScreen extends StatelessWidget {
               hideData: context.read<LoginProvider>().hidePassword,
               hint: ConstText.pass,
               icon: Icons.security_update_good,
-              textType: TextInputType.emailAddress,
+              textType: TextInputType.number,
               controller: provider.pass,
-              errorMessege: "Please Enter your password"),
+              errorMessege: ConstText.errorPass),
           TextButton(
-            onPressed: () {
-              RoutesManager.nextScreen(screen: const RegistrationScreen());
-            },
-            child: const Text(
-              "New to Here! Register?",
-              style: TextStyle(color: AppColors.blackColor),
-            ),
-          ),
+              onPressed: () {
+                RoutesManager.nextScreen(screen: const RegistrationScreen());
+              },
+              child: CustomTextWidget(
+                text: ConstText.goToRegister,
+              )),
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 20),
             child: ElevatedButton(
               style: ElevatedButton.styleFrom(
-                primary: Colors.black,
+                primary: AppColors.blackColor,
               ),
               onPressed: () {
                 provider.singInHere(context);
               },
-              child: const Text("Sign Up"),
+              child: CustomTextWidget(
+                text: ConstText.signIn,
+                textColor: AppColors.bgColor,
+              ),
             ),
           ),
         ],

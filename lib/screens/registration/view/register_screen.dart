@@ -3,6 +3,7 @@ import 'package:chit_app/constends/const_colors.dart';
 import 'package:chit_app/constends/text_const.dart';
 import 'package:chit_app/screens/registration/view_model/registration_provider.dart';
 import 'package:chit_app/utils/custom_genter_widget.dart';
+import 'package:chit_app/utils/custom_text_widget.dart';
 import 'package:chit_app/utils/custom_textform_widget.dart';
 import 'package:chit_app/utils/routes.dart';
 import 'package:flutter/material.dart';
@@ -28,7 +29,7 @@ class RegistrationScreen extends StatelessWidget {
                   children: [
                     Box.sizedBox1,
                     TextFormWidget(
-                      errorMessege: "Please Enter Your Name",
+                      errorMessege: ConstText.errorName,
                       controller: context.read<RegisterProvider>().name,
                       label: "Name",
                       hideData: false,
@@ -38,7 +39,7 @@ class RegistrationScreen extends StatelessWidget {
                     ),
                     Box.sizedBox2,
                     TextFormWidget(
-                      errorMessege: "Please Enter Your Email",
+                      errorMessege: ConstText.errorMail,
                       controller: context.read<RegisterProvider>().email,
                       label: "Email",
                       hideData: false,
@@ -48,13 +49,13 @@ class RegistrationScreen extends StatelessWidget {
                     ),
                     Box.sizedBox2,
                     TextFormWidget(
-                      errorMessege: "Please Enter Your Mobile Number",
+                      errorMessege: ConstText.errorNumber,
                       controller: context.read<RegisterProvider>().mobileNumber,
                       label: "Mobile Number",
                       hideData: false,
                       hint: "ENTER YOUR NUMBER",
                       icon: Icons.email_outlined,
-                      textType: TextInputType.multiline,
+                      textType: TextInputType.number,
                     ),
                     Box.sizedBox2,
                     TextFormWidget(
@@ -71,13 +72,13 @@ class RegistrationScreen extends StatelessWidget {
                                   children: [
                                     Column(
                                       children: [
-                                        GenderWidget(
+                                        CustomGenderWidget(
                                             text: ConstText.gender1,
                                             genterType: ConstText.gender1),
-                                        GenderWidget(
+                                        CustomGenderWidget(
                                             text: ConstText.gender2,
                                             genterType: ConstText.gender2),
-                                        GenderWidget(
+                                        CustomGenderWidget(
                                             text: ConstText.gender3,
                                             genterType: ConstText.gender3),
                                       ],
@@ -89,7 +90,7 @@ class RegistrationScreen extends StatelessWidget {
                       },
                       readOnly: true,
                       label: "Gender",
-                      errorMessege: "Please Select Your Gender",
+                      errorMessege: ConstText.errorGender,
                       controller: context.read<RegisterProvider>().genter,
                       hideData: false,
                       hint: "SELECT GENDER ",
@@ -98,7 +99,7 @@ class RegistrationScreen extends StatelessWidget {
                     ),
                     Box.sizedBox2,
                     TextFormWidget(
-                      errorMessege: "Please Enter Your Password",
+                      errorMessege: ConstText.errorPass,
                       controller: context.read<RegisterProvider>().pass,
                       label: "password",
                       hideData: context.read<RegisterProvider>().hidePassword,
@@ -125,14 +126,17 @@ class RegistrationScreen extends StatelessWidget {
                       width: size.width / 2,
                       child: ElevatedButton(
                         style: ElevatedButton.styleFrom(
-                          primary: Colors.black,
+                          primary: AppColors.blackColor,
                         ),
                         onPressed: () {
                           context
                               .read<RegisterProvider>()
                               .registerHere(context);
                         },
-                        child: const Text("Sign Up"),
+                        child: CustomTextWidget(
+                          text: ConstText.signUp,
+                          textColor: AppColors.bgColor,
+                        ),
                       ),
                     ),
                   ],
